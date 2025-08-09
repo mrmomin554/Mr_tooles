@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>God Level SMM Panel - Premium Social Media Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --dark: #2d3436;
+            --light: #f7f7f7;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: var(--dark);
+            min-height: 100vh;
+            padding-bottom: 40px;
+        }
+        
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 15px 0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .logo i {
+            color: var(--warning);
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        
+        nav a:hover, nav a.active {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        .user-actions {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .btn {
+            padding: 10px 22px;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            font-size: 1rem;
+        }
+        
+        .btn-login {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn-register {
+            background: var(--warning);
+            color: var(--dark);
+        }
+        
+        /* Dashboard Section */
+        .dashboard {
+            margin-top: 40px;
+        }
+        
+        .dashboard-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .dashboard-title {
+            font-size: 2.2rem;
+            color: var(--dark);
+        }
+        
+        .dashboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+        
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .stat-title {
+            font-size: 1.1rem;
+            color: #777;
+            font-weight: 500;
+        }
+        
+        .stat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+        }
+        
+        .icon-1 { background: rgba(108, 92, 231, 0.2); color: var(--primary); }
+        .icon-2 { background: rgba(0, 184, 148, 0.2); color: var(--success); }
+        .icon-3 { background: rgba(253, 203, 110, 0.2); color: var(--warning); }
+        .icon-4 { background: rgba(214, 48, 49, 0.2); color: var(--danger); }
+        
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+        }
+        
+        .stat-footer {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--success);
+            font-weight: 500;
+        }
+        
+        /* Services Section */
+        .services {
+            margin-top: 50px;
+        }
+        
+        .section-title {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 70px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        .categories {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .category {
+            background: white;
+            padding: 12px 25px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 500;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+        
+        .category:hover, .category.active {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        
+        .service-header {
+            padding: 20px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            color: white;
+        }
+        
+        .service-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .service-body {
+            padding: 20px;
+        }
+        
+        .service-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .service-price {
+            font-weight: 700;
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+        
+        .service-stats {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .stat-number {
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+        
+        .stat-label {
+            font-size: 0.85rem;
+            color: #777;
+        }
+        
+        .order-form {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        
+        .form-group label {
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+        
+        .form-group input {
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .btn-order {
+            background: var(--primary);
+            color: white;
+            margin-top: 10px;
+            padding: 12px;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        
+        /* Footer */
+        footer {
+            margin-top: 70px;
+            background: var(--dark);
+            color: white;
+            padding: 50px 0 20px;
+            border-radius: 20px 20px 0 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+        }
+        
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--secondary);
+            padding-left: 5px;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid #444;
+            color: #999;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            nav ul {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .dashboard-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            
+            .categories {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-crown"></i>
+                    <span>God Level SMM</span>
+                </div>
+                
+                <nav>
+                    <ul>
+                        <li><a href="#" class="active">ড্যাশবোর্ড</a></li>
+                        <li><a href="#">সেবাসমূহ</a></li>
+                        <li><a href="#">অর্ডার</a></li>
+                        <li><a href="#">টিকিট</a></li>
+                        <li><a href="#">অর্থসংস্থান</a></li>
+                        <li><a href="#">এফ.এ.কিউ</a></li>
+                    </ul>
+                </nav>
+                
+                <div class="user-actions">
+                    <button class="btn btn-login">লগইন</button>
+                    <button class="btn btn-register">রেজিস্টার</button>
+                </div>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Dashboard Section -->
+    <div class="container">
+        <section class="dashboard">
+            <div class="dashboard-header">
+                <h1 class="dashboard-title">আপনার এস.এম.এম প্যানেল ড্যাশবোর্ড</h1>
+                <div class="balance-info">
+                    <h3>ব্যালেন্স: <span style="color: var(--success);">৳ 5,420.00</span></h3>
+                </div>
+            </div>
+            
+            <div class="dashboard-stats">
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">মোট অর্ডার</div>
+                        <div class="stat-icon icon-1">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">1,842</div>
+                    <div class="stat-footer">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>12% গত মাস থেকে</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">সম্পন্ন অর্ডার</div>
+                        <div class="stat-icon icon-2">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">1,723</div>
+                    <div class="stat-footer">
+                        <i class="fas fa-arrow-up"></i>
+                        <span>8% গত মাস থেকে</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">চলমান অর্ডার</div>
+                        <div class="stat-icon icon-3">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">84</div>
+                    <div class="stat-footer">
+                        <i class="fas fa-arrow-down"></i>
+                        <span>3% গত মাস থেকে</span>
+                    </div>
+                </div>
+                
+                <div class="stat-card">
+                    <div class="stat-header">
+                        <div class="stat-title">বাতিল অর্ডার</div>
+                        <div class="stat-icon icon-4">
+                            <i class="fas fa-times-circle"></i>
+                        </div>
+                    </div>
+                    <div class="stat-value">35</div>
+                    <div class="stat-footer">
+                        <i class="fas fa-arrow-down"></i>
+                        <span>5% গত মাস থেকে</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Services Section -->
+        <section class="services">
+            <h2 class="section-title">আমাদের সেবাসমূহ</h2>
+            
+            <div class="categories">
+                <div class="category active">সকল সেবা</div>
+                <div class="category">ফেসবুক</div>
+                <div class="category">ইউটিউব</div>
+                <div class="category">ইন্সটাগ্রাম</div>
+                <div class="category">টুইটার</div>
+                <div class="category">টিকটক</div>
+                <div class="category">ওয়েবসাইট</div>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3 class="service-title">
+                            <i class="fab fa-facebook"></i>
+                            ফেসবুক পেজ লাইক
+                        </h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-info">
+                            <div class="service-price">৳ 10/100</div>
+                            <div class="service-min">ন্যূনতম: 100</div>
+                        </div>
+                        
+                        <div class="service-stats">
+                            <div class="stat">
+                                <div class="stat-number">২-৫ ঘণ্টা</div>
+                                <div class="stat-label">সময়</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">99.2%</div>
+                                <div class="stat-label">সাফল্য হার</div>
+                            </div>
+                        </div>
+                        
+                        <form class="order-form">
+                            <div class="form-group">
+                                <label for="link1">পেজ লিংক</label>
+                                <input type="text" id="link1" placeholder="https://facebook.com/yourpage">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="quantity1">পরিমাণ</label>
+                                <input type="number" id="quantity1" placeholder="100-50000" min="100">
+                            </div>
+                            
+                            <button class="btn btn-order">অর্ডার করুন</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3 class="service-title">
+                            <i class="fab fa-youtube"></i>
+                            ইউটিউব ভিউ
+                        </h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-info">
+                            <div class="service-price">৳ 15/1000</div>
+                            <div class="service-min">ন্যূনতম: 1000</div>
+                        </div>
+                        
+                        <div class="service-stats">
+                            <div class="stat">
+                                <div class="stat-number">১-৩ দিন</div>
+                                <div class="stat-label">সময়</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">98.7%</div>
+                                <div class="stat-label">সাফল্য হার</div>
+                            </div>
+                        </div>
+                        
+                        <form class="order-form">
+                            <div class="form-group">
+                                <label for="link2">ভিডিও লিংক</label>
+                                <input type="text" id="link2" placeholder="https://youtube.com/watch?v=...">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="quantity2">পরিমাণ</label>
+                                <input type="number" id="quantity2" placeholder="1000-100000" min="1000">
+                            </div>
+                            
+                            <button class="btn btn-order">অর্ডার করুন</button>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-header">
+                        <h3 class="service-title">
+                            <i class="fab fa-instagram"></i>
+                            ইন্সটাগ্রাম ফলোয়ার
+                        </h3>
+                    </div>
+                    <div class="service-body">
+                        <div class="service-info">
+                            <div class="service-price">৳ 20/100</div>
+                            <div class="service-min">ন্যূনতম: 100</div>
+                        </div>
+                        
+                        <div class="service-stats">
+                            <div class="stat">
+                                <div class="stat-number">৪-১২ ঘণ্টা</div>
+                                <div class="stat-label">সময়</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">97.5%</div>
+                                <div class="stat-label">সাফল্য হার</div>
+                            </div>
+                        </div>
+                        
+                        <form class="order-form">
+                            <div class="form-group">
+                                <label for="link3">ইউজারনেম</label>
+                                <input type="text" id="link3" placeholder="@yourusername">
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="quantity3">পরিমাণ</label>
+                                <input type="number" id="quantity3" placeholder="100-10000" min="100">
+                            </div>
+                            
+                            <button class="btn btn-order">অর্ডার করুন</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>God Level SMM</h3>
+                    <p>প্রিমিয়াম সোশ্যাল মিডিয়া মার্কেটিং সার্ভিস। উচ্চ গতির ডেলিভারি এবং সেরা মানের পরিষেবা প্রদান করি।</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>লিংকস</h3>
+                    <div class="footer-links">
+                        <a href="#">হোম</a>
+                        <a href="#">সেবাসমূহ</a>
+                        <a href="#">মূল্য তালিকা</a>
+                        <a href="#">এফ.এ.কিউ</a>
+                        <a href="#">যোগাযোগ</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>সেবাসমূহ</h3>
+                    <div class="footer-links">
+                        <a href="#">ফেসবুক সার্ভিস</a>
+                        <a href="#">ইউটিউব সার্ভিস</a>
+                        <a href="#">ইন্সটাগ্রাম সার্ভিস</a>
+                        <a href="#">টুইটার সার্ভিস</a>
+                        <a href="#">টিকটক সার্ভিস</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>যোগাযোগ</h3>
+                    <div class="footer-links">
+                        <a href="#"><i class="fas fa-envelope"></i> support@godlevelsmm.com</a>
+                        <a href="#"><i class="fas fa-phone"></i> +880 1234-567890</a>
+                        <a href="#"><i class="fas fa-map-marker-alt"></i> ঢাকা, বাংলাদেশ</a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; ২০২৩ God Level SMM Panel. সর্বস্বত্ব সংরক্ষিত।
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple script for category selection
+        document.querySelectorAll('.category').forEach(category => {
+            category.addEventListener('click', function() {
+                document.querySelectorAll('.category').forEach(cat => {
+                    cat.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+        
+        // Simple animation for buttons
+        document.querySelectorAll('.btn').forEach(button => {
+            button.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 7px 15px rgba(0,0,0,0.2)';
+            });
+            
+            button.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 8px rgba(0,0,0,0.1)';
+            });
+        });
+    </script>
+</body>
+                          </html>
